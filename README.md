@@ -1,5 +1,5 @@
 # Shopper-Intention
-![image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.insider.com%2Fbest-time-to-go-grocery-shopping-2018-3&psig=AOvVaw2IT07jA1HjiDXS-0Y11pJV&ust=1587207756561000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCMjHwein7-gCFQAAAAAdAAAAABAD)
+![image](https://i.insider.com/5bf2e0a248eb1202f2434353?width=1100&format=jpeg&auto=webp)
 
 ## About
 
