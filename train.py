@@ -8,7 +8,6 @@ from sklearn import preprocessing
 from  sklearn.model_selection import train_test_split
 import urllib.request
 
-
 # load the dataset
 url = 'online_shoppers_intention.csv'
 df = pd.read_csv(url)
@@ -25,25 +24,13 @@ X = expand_dims(X_train, axis=2)
 y.shape = (12330, 1)
 X = np.nan_to_num(X)
 
-# Build the model
-nn = input_data(shape=[None, 17, 1], name='input')
-nn = fully_connected(nn,16, activation='relu')
-nn = dropout(nn, 0.4)
-nn = fully_connected(nn,32, activation='relu')
-nn = dropout(nn, 0.4)
-nn = fully_connected(nn,64, activation='relu')
-nn = dropout(nn, 0.4)
-nn = fully_connected(nn,32, activation='relu')
-nn = dropout(nn, 0.4)
-nn = fully_connected(nn,16, activation='relu')
-nn = dropout(nn, 0.4)
-nn = fully_connected(nn, 1, activation='sigmoid')
-nn = regression(nn, optimizer='adam', learning_rate=1e-3, loss='binary_crossentropy', name='targets')
-nn = tflearn.DNN(nn, tensorboard_dir='log')
 
-# fit the model
-nn.fit(X, y, n_epoch=10, snapshot_step=200, show_metric=True, batch_size=10)
+import tflearnclass
+
+model = tflearnclass.model(17)
+model.train(X, y)
 
 # evaluate the model
-accuracy = nn.evaluate(X, y)
-print('Accuracy: %.2f' % (accuracy[0]*100))
+
+precition = model.predict(X[0])
+print(y[0])
