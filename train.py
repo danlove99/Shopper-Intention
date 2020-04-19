@@ -1,12 +1,9 @@
 from numpy import loadtxt, reshape, expand_dims
 import numpy as np
-import tflearn
-from tflearn.layers.core import fully_connected, dropout, input_data
-from tflearn.layers.estimator import regression
 import pandas as pd
-from sklearn import preprocessing
 from  sklearn.model_selection import train_test_split
 import urllib.request
+import os 
 
 # load the dataset
 url = 'online_shoppers_intention.csv'
@@ -20,17 +17,25 @@ X =((X-X.min())/(X.max()-X.min()))*20
 
 # split and reshape data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
-X = expand_dims(X_train, axis=2)
+
+choice = input('k = keras | t = tensorflow \nWhat framework do you want to use: ')
+if choice.lower() == 't':
+	X = expand_dims(X_train, axis=2)
+
+
 y.shape = (12330, 1)
 X = np.nan_to_num(X)
 
+if choice.lower() == 'k':
+	import kerasclass
 
-import tflearnclass
+	model = kerasclass.model(17)
+	model.train(X,y)
+elif choice.lower() == 't':
+	import tflearnclass
 
-model = tflearnclass.model(17)
-model.train(X, y)
-
-# evaluate the model
-
-precition = model.predict(X[0])
-print(y[0])
+	model = tflearnclass.model(17)
+	model.train(X, y)
+else:
+	print('Not an option! Please enter either "k" or "t"')
+	
