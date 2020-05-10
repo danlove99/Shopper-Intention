@@ -5,15 +5,23 @@ from  sklearn.model_selection import train_test_split
 import urllib.request
 import os 
 
-# load the dataset
-url = 'online_shoppers_intention.csv'
-df = pd.read_csv(url)
-y = df['Revenue'].values
+try:
 
-X = df.drop(['Revenue'], axis=1)
+	X = np.load('features.npy')
+	y = np.load('labels.npy')
+	print("Succesfully loaded preprocessed features and labels!")
+except:
+	# load the dataset
+	url = 'online_shoppers_intention.csv'
+	df = pd.read_csv(url)
+	y = df['Revenue'].values
 
-# Normalize data
-X =((X-X.min())/(X.max()-X.min()))*20
+	X = df.drop(['Revenue'], axis=1)
+
+	# Normalize data
+	X =((X-X.min())/(X.max()-X.min()))*20
+	np.save('features.npy', X)
+	np.save('labels.npy', y)
 
 # split and reshape data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
